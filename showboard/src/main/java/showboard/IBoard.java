@@ -14,6 +14,7 @@ import java.util.Observer;
  * @see ISquare
  * @see IPawn
  */
+
 public interface IBoard {
 
     /**
