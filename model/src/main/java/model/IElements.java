@@ -1,5 +1,5 @@
 package model;
-
+import model.Position;
 
 public interface IElements {
 	
