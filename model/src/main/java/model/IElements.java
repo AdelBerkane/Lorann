@@ -1,10 +1,20 @@
 package model;
-import contract.model.Position;
+
 
 public interface IElements {
 	
-	protected SPrite sprite;
-	protected Permeability permeability;
-	protected Position 
+	public Sprite getSprite();
+
+	public ObstacleType obtype();
+		
+	public Position getPosition();
+	
+	public boolean isGate();
+	
+	public boolean isCrystaBall();
+	
+	public boolean isBone();
+	
+	public boolean isPurse();
 
 }

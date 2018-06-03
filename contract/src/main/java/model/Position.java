@@ -1,8 +1,14 @@
 package model;
-
+/**
+ * This sets up the position of elements in the frame.
+ * @author adel
+ *
+ */
 public class Position {
 	private double x;
 	private double y;
+	
+
 	
 	public Position(double x, double y) {
 		this.x = x;

@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Elements can be passed or not
+ * Elements can be passed by or not
  * @author adel
  *
  */
