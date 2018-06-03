@@ -38,7 +38,7 @@ public class Mobile extends Elements implements Imobile {
 			break;
 		case DOWN:
 			this.moveDown();
-			break
+			break;
 		case RIGHT:
 			this.moveRight();
 			break;
@@ -232,5 +232,17 @@ public class Mobile extends Elements implements Imobile {
 	 public int getPrivateAttribute() {
 		 return 0;
 	 }
+
+	@Override
+	public ObstacleType obtype() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isCrystaBall() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }
