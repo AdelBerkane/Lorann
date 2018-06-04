@@ -406,6 +406,24 @@ public class Model extends Observable implements IModel {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Example getExampleById(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Example getExampleByName(String name) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Example> getAllExamples() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	
