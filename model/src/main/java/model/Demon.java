@@ -5,7 +5,6 @@ import model.IMobile;
 import model.Position;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashmap;
 
 public abstract class Demon extends Mobile {
 
@@ -42,7 +41,7 @@ public abstract class Demon extends Mobile {
 		HashMap<Direction, Integer> distanceByDirection = new HashMap<Direction, Integer>();
 		for (int i = 0; i <= 7; i++) {
 			direction = Direction.values()[i];
-			Position nextPosition = this.getNextPosition(newPosition(demon.getX(), demon.getY()), direction);
+			Position nextPosition = this.getNextPosition(new Position(demon.getX(), demon.getY()), direction);
 			int Distance = (int) (Math.abs(nextPosition.getX() - lorann.getX())
 					+ Math.abs(nextPosition.getY() - lorann.getY()));
 			distanceByDirection.put(direction, Distance);
@@ -63,7 +62,7 @@ public abstract class Demon extends Mobile {
 
 		int Smaller = 0;
 		int indexSmaller = 0;
-		for (int y = 0; u <= 7; y++) {
+		for (int y = 0; y <= 7; y++) {
 			Smaller = (Integer) distanceByDirection.values().toArray()[0];
 			for (int i = 0; i < distanceByDirection.size(); i++) {
 				if ((Integer) distanceByDirection.values().toArray()[i] <= Smaller) {

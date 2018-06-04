@@ -3,6 +3,7 @@ package model;
 import java.awt.Image;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 import model.Direction;
@@ -37,6 +38,24 @@ public class Model extends Observable implements IModel {
 		this.Height = Height;
 		this.elements = new Elements[this.Height][this.Width];
 		
+	}
+
+	@Override
+	public Example getExampleById(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Example getExampleByName(String name) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Example> getAllExamples() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
