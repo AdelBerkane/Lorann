@@ -2,9 +2,9 @@ package main;
 
 import java.sql.SQLException;
 
-import controller.ControllerFacade;
-import model.ModelFacade;
-import view.ViewFacade;
+import controller.Controller;
+import model.Model;
+import view.View;
 
 /**
  * <h1>The Class Main.</h1>
@@ -21,13 +21,14 @@ public abstract class Main {
      *            the arguments
      */
     public static void main(final String[] args) {
-        final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
-
-        try {
-            controller.start();
-        } catch (final SQLException exception) {
-            exception.printStackTrace();
+        final int WidthMap = 20;
+        final int HeightMap = 12;
+        final Model model = new Model(WidthMap, HeightMap);
+        final Controller Controller = new Controller(model);
+        final LorannView View = new LorannView(Controller, model, model);
+        
+        Controller.setViewSystem(View);
         }
     }
 
-}
+

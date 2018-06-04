@@ -8,7 +8,7 @@ public class Lorann extends Mobile {
 	public boolean win = false;
 
 	public Lorann(Direction direction, Position position) {
-		super(new Sprite(/* signeàmettre */"lorann_" + direction), ObstacleType.BLOCKING, position, direction);
+		super(new Sprite("L", "lorann_" + direction), ObstacleType.BLOCKING, position, direction);
 		this.needToMove = false;
 	}
 
