@@ -246,4 +246,16 @@ public class Mobile extends Elements implements IMobile {
 		return 0;
 	}
 
+	@Override
+	public ObstacleType obtype() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isCrystaBall() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
