@@ -23,7 +23,16 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/adel/Documents/Exia/POO/Projet/Lorann/mysql-connector-java-8.0.11/mysql-connector-java-8.0.11.jar"/>
 	<classpathentry kind="lib" path="D:/Users/Cimo44/Desktop/Logiciels/mysql-connector-java-8.0.11/mysql-connector-java-8.0.11.jar"/>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

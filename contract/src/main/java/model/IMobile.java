@@ -22,6 +22,7 @@ public interface IMobile {
 	public void setSprite(int color);
 	public void setPrivateAttribute(int privateAttribute);
 	public int getPrivateAttribute();
+	public int getResurection();
 	
 	public void animate();
 	public void animate(Position Lorann, ArrayList<Direction> possiblePath);

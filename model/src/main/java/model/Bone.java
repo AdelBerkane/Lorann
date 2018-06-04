@@ -11,7 +11,7 @@ public class Bone extends Motionless {
 	 */
 	
 	public Bone(String orientation, Position position) {
-		super(new Sprite(/*signeàmettre*/ "bone_" + orientation), ObstacleType.BLOCKING, position);
+		super(new Sprite("B", "bone_" + orientation), ObstacleType.BLOCKING, position);
 	}
 	
 	/**

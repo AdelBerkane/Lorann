@@ -3,6 +3,8 @@ package model;
 import java.sql.SQLException;
 import java.util.List;
 
+import java.util.ArrayList;
+
 /**
  * <h1>The Interface IModel.</h1>
  *
@@ -10,35 +12,43 @@ import java.util.List;
  * @version 1.0
  */
 public interface IModel {
+	public void move();
 
-    /**
-     * Gets the example by id.
-     *
-     * @param id
-     *            the id
-     * @return the example by id
-     * @throws SQLException
-     *             the SQL exception
-     */
-    Example getExampleById(int id) throws SQLException;
+	public boolean isWeapon();
 
-    /**
-     * Gets the example by name.
-     *
-     * @param name
-     *            the name
-     * @return the example by name
-     * @throws SQLException
-     *             the SQL exception
-     */
-    Example getExampleByName(String name) throws SQLException;
+	public boolean isEnemy();
 
-    /**
-     * Gets the all examples.
-     *
-     * @return the all examples
-     * @throws SQLException
-     *             the SQL exception
-     */
-    List<Example> getAllExamples() throws SQLException;
+	public void setHit(boolean hit);
+
+	public boolean getHit();
+
+	public boolean getWin();
+
+	public Direction getDIrection();
+
+	public void setDirection(Direction direction);
+
+	public boolean getNeedToMove();
+
+	public void setNeedToMove(boolean bool);
+
+	public Position getPosition();
+
+	public void setImage(Direction direction);
+
+	public void setLastDirection(Direction direction);
+
+	public void setSprite(int color);
+
+	public void setPrivateAttribute(int privateAttribute);
+
+	public int getPrivateAttribute();
+
+	public void animate();
+	public void setMobilesHaveMoved();
+	public void addMissile();
+	
+
+	public void animate(Position Lorann, ArrayList<Direction> possiblePath);
+
 }
