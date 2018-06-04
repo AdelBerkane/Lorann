@@ -6,50 +6,102 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * <h1>The Class BoulderDashBDDConnector.</h1>
+ *
+ * @author Jean-Aymeric DIET jadiet@cesi.fr
+ * @version 1.0
+ */
 final class LorannBDDConnector {
 
-    
-    private static LorannBDDConnector instance;                                                           /** The instance */
-    private static String                  user     = "root";                                             /** The login */
-    private static String                  password = "*E3F7432FB55072A66CD348BA29012F0A17010426";        /** The password */
-    private static String                  url      = "jdbc:mysql://localhost/lorann?useSSL=false&serverTimezone=UTC"; /**The url*/
-    private Connection                     connection;                                                    /** The connection */
-    private Statement                                                                                     /** The statement */
-    statement;
-    
-    private LorannBDDConnector() { /**Instantiates a new boulder dash BDD connector*/
+    /** The instance. */
+    private static LorannBDDConnector instance;
+
+    /** The login. */
+    private static String                  user     = "root";
+
+    /** The password. */
+    private static String                  password = "";
+
+    /** The url. */
+    private static String                  url      = "jdbc:mysql://localhost/lorann?useSSL=false&serverTimezone=UTC";
+
+    /** The connection. */
+    private Connection                     connection;
+
+    /** The statement. */
+    private Statement                      statement;
+
+    /**
+     * Instantiates a new boulder dash BDD connector.
+     */
+    private LorannBDDConnector() {
         this.open();
     }
+
+    /**
+     * Gets the single instance of BoulderDashBDDConnector.
+     *
+     * @return single instance of BoulderDashBDDConnector
+     */
     public static LorannBDDConnector getInstance() {
-        if (instance == null) {                                   /**Gets the single instance of BoulderDashBDDConnector.*/
+        if (instance == null) {
             setInstance(new LorannBDDConnector());
         }
         return instance;
     }
-    private static void setInstance(final LorannBDDConnector instance) {            /**Sets the instance*/
+
+    /**
+     * Sets the instance.
+     *
+     * @param instance
+     *            the new instance
+     */
+    private static void setInstance(final LorannBDDConnector instance) {
         LorannBDDConnector.instance = instance;
     }
-         private boolean open() {
+
+    /**
+     * Open.
+     *
+     * @return true, if successful
+     */
+    private boolean open() {
         try {
             this.connection = DriverManager.getConnection(LorannBDDConnector.url, LorannBDDConnector.user,
                     LorannBDDConnector.password);
-            this.statement = this.connection.createStatement();         /**Open*/
-
+            this.statement = this.connection.createStatement();
             return true;
         } catch (final SQLException exception) {
             exception.printStackTrace();
         }
         return false;
     }
+
+    /**
+     * Execute query.
+     *
+     * @param query
+     *            the query
+     * @return the result set
+     */
     public ResultSet executeQuery(final String query) {
-        try {                                                                 /**Execute query*/
+        try {
             return this.getStatement().executeQuery(query);
         } catch (final SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
-    public java.sql.CallableStatement prepareCall(final String query) {    /**Prepare call.*/
+
+    /**
+     * Prepare call.
+     *
+     * @param query
+     *            the query
+     * @return the java.sql. callable statement
+     */
+    public java.sql.CallableStatement prepareCall(final String query) {
         try {
             return this.getConnection().prepareCall(query);
         } catch (final SQLException e) {
@@ -57,7 +109,15 @@ final class LorannBDDConnector {
         }
         return null;
     }
-    public int executeUpdate(final String query) {         /**Execute update.*/
+
+    /**
+     * Execute update.
+     *
+     * @param query
+     *            the query
+     * @return the int
+     */
+    public int executeUpdate(final String query) {
         try {
             return this.statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
         } catch (final SQLException e) {
@@ -65,16 +125,42 @@ final class LorannBDDConnector {
         }
         return 0;
     }
-    public Connection getConnection() {   /**Gets the connection*/
+
+    /**
+     * Gets the connection.
+     *
+     * @return the connection
+     */
+    public Connection getConnection() {
         return this.connection;
     }
-    public void setConnection(final Connection connection) {  /**Sets the connection*/
+
+    /**
+     * Sets the connection.
+     *
+     * @param connection
+     *            the new connection
+     */
+    public void setConnection(final Connection connection) {
         this.connection = connection;
     }
-    public Statement getStatement() {  /**Gets the statement*/
+
+    /**
+     * Gets the statement.
+     *
+     * @return the statement
+     */
+    public Statement getStatement() {
         return this.statement;
     }
-    public void setStatement(final Statement statement) {  /**Sets the statement.*/
+
+    /**
+     * Sets the statement.
+     *
+     * @param statement
+     *            the new statement
+     */
+    public void setStatement(final Statement statement) {
         this.statement = statement;
     }
 
