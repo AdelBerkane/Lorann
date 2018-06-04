@@ -6,7 +6,7 @@ import model.Position;
 
 import java.util.ArrayList;
 
-public abstract class Mobile extends Elements implements IMobile {
+public class Mobile extends Elements implements IMobile {
 
 	protected Direction direction = null;
 	public boolean needToMove = false;
