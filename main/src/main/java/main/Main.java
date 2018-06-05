@@ -4,7 +4,6 @@ import java.sql.SQLException;
 
 import controller.Controller;
 import model.Model;
-import view.View;
 import view.ViewFacade;
 
 /**
@@ -29,7 +28,7 @@ public abstract class Main {
         final Controller Controller = new Controller(model);
         final ViewFacade View = new ViewFacade(Controller, model, model);
         
-        
+        Controller.setView(View);
         Controller.play();
         }
     }
