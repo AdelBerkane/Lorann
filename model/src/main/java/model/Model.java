@@ -10,6 +10,8 @@ import model.Direction;
 import model.IMobile;
 import model.IModel;
 import model.Position;
+import model.dao.DAOScore;
+import model.dao.LorannBDDConnector;
 
 public class Model extends Observable implements IModel {
 
@@ -299,6 +301,13 @@ public class Model extends Observable implements IModel {
 		return mobile;
 	}
 
+	/**
+	 * Detects if the mobile element is in collision with another mobile
+	 * 
+	 * @param mobile
+	 * @return
+	 */
+
 	private boolean isCollisionAdvanced(IMobile mobile) {
 		ArrayList<IMobile> Demon1 = this.getDemon();
 		if (Demon1.size() > 1) {
@@ -312,7 +321,7 @@ public class Model extends Observable implements IModel {
 			for (int i = 0; Demon1.size() > i; i++) {
 				actualMobile = (IMobile) Demon1.toArray()[i];
 				if (actualMobile != mobile)
-					allNextPosition1.add(this.getNextPosition(mobile));
+					allNextPosition1.add(this.getNextPosition(actualMobile));
 			}
 
 			/**
@@ -386,48 +395,6 @@ public class Model extends Observable implements IModel {
 	public int getResurection() {
 		return this.resurection;
 	}
-<<<<<<< HEAD
-=======
-
-	@Override
-	public Example getExampleById(int id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Example getExampleByName(String name) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Example> getAllExamples() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Example getExampleById(int id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Example getExampleByName(String name) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Example> getAllExamples() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
-	
->>>>>>> 6514dbce8a3defebf0ccd19610abe4fb20dba213
 
 	public void setResurection(int value) {
 		this.resurection = value;
@@ -441,6 +408,15 @@ public class Model extends Observable implements IModel {
 		return this.gameLose;
 	}
 
+	public void saveVariable() {
+		try {
+			DAOScore daoscore = new DAOScore(LorannBDDConnector.getInstance().getConnection());
+			daoscore.saveScore(this.score, this.resurection, this.actualMap);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * Sets all the variables to 0, and sets one possible direction to all the
 	 * present demons
@@ -448,10 +424,10 @@ public class Model extends Observable implements IModel {
 	public void initGame() {
 		this.gameLose = false;
 		this.gameWin = false;
-		ArrayList<IMobile> Monsters = this.getDemon();
+		ArrayList<IMobile> Demon = this.getDemon();
 		IMobile actualMobile;
-		for (int i = 0; Monsters.size() > i; i++) {
-			actualMobile = (IMobile) Monsters.toArray()[i];
+		for (int i = 0; Demon.size() > i; i++) {
+			actualMobile = (IMobile) Demon.toArray()[i];
 			actualMobile.setDirection((Direction) this.getPossiblePath(actualMobile).toArray()[0]);
 			actualMobile.setNeedToMove(false);
 		}

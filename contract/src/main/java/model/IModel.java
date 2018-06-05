@@ -47,7 +47,9 @@ public interface IModel {
 	public void animate();
 	public void setMobilesHaveMoved();
 	public void addMissile();
-	
+	public boolean getGameWin();
+	public boolean getGameLose();
+
 
 	public void animate(Position Lorann, ArrayList<Direction> possiblePath);
 

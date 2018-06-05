@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 import model.IModel;
-import model.IModel;
+import model.*;
 
 public class GraphicsBuilder implements IGraphicsBuilder {
 	private final IModel buildgraph;

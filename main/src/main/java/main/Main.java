@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import controller.Controller;
 import model.Model;
 import view.View;
+import view.ViewFacade;
 
 /**
  * <h1>The Class Main.</h1>
@@ -25,9 +26,10 @@ public abstract class Main {
         final int HeightMap = 12;
         final Model model = new Model(WidthMap, HeightMap);
         final Controller Controller = new Controller(model);
-        final LorannView View = new LorannView(Controller, model, model);
+        final ViewFacade View = new ViewFacade(Controller, model, model);
         
-        Controller.setViewSystem(View);
+        
+        Controller.play();
         }
     }
 

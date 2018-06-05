@@ -165,7 +165,22 @@ public void launchMissile() {
 	}
 	
 	public void getLorann() {
-		this.Lorann=this.model.getLorann();	}
+		this.Lorann=this.model.getLorann();
+		}
+	public void getMissile() {
+		this.Missile= this.model.getMissile();
+	}
+	public void getDemon() {
+		this.Demon = this.model.getDemon();
+	}
+	
+	public void gameLoop() {
+		this.model.initGame();
+	}
+	
+	public void gameLoop() {
+		this.model.initGame();
+	}
 }
 
 
