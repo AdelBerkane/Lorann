@@ -10,6 +10,7 @@ import model.Direction;
 import model.IMobile;
 import model.IModel;
 import model.Position;
+import model.dao.DAOMap;
 import model.dao.DAOScore;
 import model.dao.LorannBDDConnector;
 
@@ -53,6 +54,12 @@ public class Model extends Observable implements IModel {
 		if (!((position.getX() < 0) || (position.getY() < 0) || (position.getX() >= this.getWidth())
 				|| (position.getY() >= this.getHeight())))
 			this.elements[(int) position.getX()][(int) position.getY()] = new Missile(1, position, direction);
+	}
+	
+	public Image getImageByPosition(int x, int y) {
+		if(this.map.getElements(x, y) != null)
+			return this.map.getElements(x, y).getSprite().getImage();
+		return null;
 	}
 
 	/**
@@ -360,6 +367,19 @@ public class Model extends Observable implements IModel {
 		}
 		return possiblePath;
 	}
+	
+	public void newMap(int numberLevel) throws SQLException{
+		DAOMap daomap = new DAOMap(LorannBDDConnector.getInstance().getConnection());
+		if(numberLevel != 0) {
+			this.actualMap = numberLevel;
+		}
+		buildMap(daomap.DrawMap(this.actualMap));
+	}
+	
+	public void buildMap(String mapLevel) {
+		map = new Map(this.Width, this.Height, mapLevel);
+		this.elements = map.getAllElements();
+			}
 
 	/**
 	 * Detects if the mobile can be in collision and returns the element in
@@ -406,6 +426,9 @@ public class Model extends Observable implements IModel {
 
 	public boolean getGameLose() {
 		return this.gameLose;
+	}
+	public int getScore(){
+		return this.score;
 	}
 
 	public void saveVariable() {

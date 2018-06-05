@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Image;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -15,8 +16,18 @@ public interface IModel {
 	public void move();
 
 	public boolean isWeapon();
+	public int getWidth();
+	public int getHeight();
+	public void initGame();
+	public IMobile updatePosition(IMobile mobile); 
 
 	public boolean isEnemy();
+	public IMobile getLorann();
+	public IMobile getMissile();
+	public ArrayList<IMobile> getDemon();
+	public void addScore(int addValue);
+	public void removeMobile(Position position);
+	public void setGameLose(boolean state);
 
 	public void setHit(boolean hit);
 
@@ -24,7 +35,7 @@ public interface IModel {
 
 	public boolean getWin();
 
-	public Direction getDIrection();
+	public Direction getDirection();
 
 	public void setDirection(Direction direction);
 
@@ -46,9 +57,18 @@ public interface IModel {
 
 	public void animate();
 	public void setMobilesHaveMoved();
-	public void addMissile();
+	public void addMissile(Direction direction, Position position);
 	public boolean getGameWin();
 	public boolean getGameLose();
+	
+	public Image getImageByPosition(int x, int y);
+	public int getResurection();
+	public int getScore();
+	public void saveVariable();
+	public void setScore(int score);
+	public void setResurection(int value);
+	public void newMap(int numberLevel) throws SQLException;
+	public void buildMap(String mapLevel);
 
 
 	public void animate(Position Lorann, ArrayList<Direction> possiblePath);

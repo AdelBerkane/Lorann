@@ -163,6 +163,60 @@ public void launchMissile() {
 			}
 		}
 	}
+}
+	protected boolean endUserOrder(ControllerOrder controllerOrder){
+		if(controllerOrder != null){
+			switch(controllerOrder){
+			case QUIT:
+				//Save Score to Database
+				if(this.model.getGameWin())
+						this.model.saveVariable();
+				return false;
+			case AGAIN:
+				this.newMap(0);
+				return true;
+			case LEVEL1:
+				this.newMap(1);
+				return true;
+			case LEVEL2:
+				this.newMap(2);
+				return true;
+			case LEVEL3:
+				this.newMap(3);
+				return true;
+			case LEVEL4:
+				this.newMap(4);
+				return true;
+			case LEVEL5:
+				this.newMap(5);
+				return true;
+			default:
+				return false;
+			}
+		}
+		return false;
+	}
+	private void newMap(int numberMap) {
+		if(this.model.getGameWin())
+		{
+			this.model.saveVariable();
+			this.model.setScore(0);
+			this.model.setResurection(0);
+		}
+		else if(numberMap == 0) {
+			this.model.setScore(0);
+			this.model.setResurection(this.model.getResurection()+1);
+		}
+		else {
+			this.model.setScore(0);
+			this.model.setResurection(0);
+		}
+		try {
+			this.model.newMap(numberMap);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void getLorann() {
 		this.Lorann=this.model.getLorann();
@@ -174,16 +228,101 @@ public void launchMissile() {
 		this.Demon = this.model.getDemon();
 	}
 	
-	public void gameLoop() {
-		this.model.initGame();
-	}
+	
 	
 	public void gameLoop() {
 		this.model.initGame();
+		while(!this.model.getGameWin() && !this.model.getGameLose()) {
+			this.getLorann();
+			this.getMissile();
+			this.getDemon();
+			this.moveAllMobile();
+			this.checkHitMobile();
+			this.model.setMobilesHaveMoved();
+			try {
+				Thread.sleep(TIME_SLEEP);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 	}
 }
-
-
-
-
+	
+	public void checkHitMobile() {
+		if(Lorann == null || Lorann.getHit()) {
+			this.model.setGameLose(true);
+	}
+		if(Missile!= null && Missile.getHit())
+			this.model.removeMobile(Missile.getPosition());
+		if(Demon != null) {
+			IMobile actualMobile;
+			for(int i = 0; Demon.size() > i; i++) {
+				actualMobile = (IMobile) Demon.toArray()[i];
+				if(actualMobile.getHit()) {
+					this.model.removeMobile(actualMobile.getPosition());
+					this.model.addScore(20);
+				}
+			}
+		}
+	}
+	public void moveAllMobile() {
+		if(Lorann != null && Lorann.getNeedToMove()) {
+			this.model.updatePosition(Lorann);
+			Lorann.setNeedToMove(false);
+			gifDelay = true;
+		}
+		else if(Lorann != null) {
+			if(this.gifDelay) {
+				gifDelay = false;
+				Lorann.setDirection(Lorann.getDirection());
+				Lorann.setImage(Lorann.getDirection());
+			}
+			else {
+				Direction direction;
+				if(Lorann.getDirection().ordinal() >= 7) {
+					direction = Direction.UP;
+				}
+				else {
+					direction = Direction.values()[Lorann.getDirection().ordinal() + 1];
+				}
+				Lorann.setDirection(direction);
+				Lorann.setImage(direction);
+			}
+		}
+		
+		/**
+		 * Missile movement
+		 */
+		
+		if(Missile != null) {
+			this.model.updatePosition(Missile);
+			if(Missile.getPrivateAttribute() == 4) {
+				Missile.setSprite(1);
+				Missile.setPrivateAttribute(1);
+			}
+			else {
+				Missile.setSprite(Missile.getPrivateAttribute() + 1);
+				Missile.setPrivateAttribute(Missile.getPrivateAttribute() + 1);
+			}
+		}
+		
+		/**
+		 * Enemies movement
+		 */
+		if(Demon != null) {
+			IMobile actualMobile;
+			for(int i=0; Demon.size() > i; i++) {
+				actualMobile = (IMobile) Demon.toArray()[i];
+				this.Demon.toArray()[i] = this.model.updatePosition(actualMobile);
+			}
+		}
+	}
+			
+public void setView(IView viewSystem) {
+	this.view = viewSystem;
 }
+}
+
+
+
+
+

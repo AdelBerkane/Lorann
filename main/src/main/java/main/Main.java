@@ -20,8 +20,9 @@ public abstract class Main {
      *
      * @param args
      *            the arguments
+     * @throws SQLException 
      */
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws SQLException {
         final int WidthMap = 20;
         final int HeightMap = 12;
         final Model model = new Model(WidthMap, HeightMap);

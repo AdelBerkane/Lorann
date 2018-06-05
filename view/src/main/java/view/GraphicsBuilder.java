@@ -29,7 +29,7 @@ public class GraphicsBuilder implements IGraphicsBuilder {
 	
 	public void applyModelToGraphic(final Graphics graphics, final ImageObserver observer) {
 		graphics.setColor(Color.BLACK);
-		graphics.fillRect(0, 0, this.buildgraph, getWidth()*32, this.buildgraph.getWidth()*32+40);
+		graphics.fillRect(0, 0, this.buildgraph.getWidth()*32, this.buildgraph.getWidth()*32+40);
 		
 		for (int y=0; y < this.getGlobalHeight(); y++) {
 			for (int x = 0; x < this.getGlobalWidth(); x++) {
