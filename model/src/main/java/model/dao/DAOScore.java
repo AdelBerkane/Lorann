@@ -27,7 +27,7 @@ public class DAOScore extends DAOEntity<ReturnHighScore> {
 	public int returnHighScore() {
 		try
 		{final String sql = "{call get_score()}";
-		final CallableStatement call = this.getConnnection().prepareCall(sql);
+		final CallableStatement call = this.getConnection().prepareCall(sql);
 		call.execute();
 		final ResultSet result = call.getResultSet();
 		while(result.next())
